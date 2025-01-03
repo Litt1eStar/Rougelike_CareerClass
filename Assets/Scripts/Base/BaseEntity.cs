@@ -18,6 +18,5 @@ public class BaseEntity : MonoBehaviour
             this.HP -= _damage;
         }
     }
-
     public float GET_MovementSpeed() => MOVEMENT_SPEED;
 }

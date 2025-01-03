@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveableEntity : MonoBehaviour
+public class MoveableComponent : MonoBehaviour
 {
     [SerializeField] protected float movementSpeed = 10f;
 
