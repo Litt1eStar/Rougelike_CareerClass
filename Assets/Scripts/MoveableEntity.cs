@@ -9,7 +9,7 @@ public class MoveableEntity : MonoBehaviour
     protected Animator anim;
     protected SpriteRenderer sr;
 
-    private void Start()
+    private void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
@@ -24,7 +24,12 @@ public class MoveableEntity : MonoBehaviour
             Debug.LogWarning("Animator Component is Missing");
         }
     }
-
-    public virtual void FlipCharacter() { }
-    public virtual void MoveCharacter() { }
+    protected void Move(Vector3 direction, float speed)
+    {
+        transform.position += direction * speed * Time.deltaTime;
+    }
+    public void SET_MovementSpeed(float _movementSpeed)
+    {
+        this.movementSpeed = _movementSpeed;
+    }
 }

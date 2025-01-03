@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MoveableEntity
+public class PlayerMovement : MoveableEntity
 {
     [SerializeField] private float dashSpeed = 20f;
     [SerializeField] private float dashDuration = 0.2f;
@@ -13,18 +13,27 @@ public class Player : MoveableEntity
     private bool isDashing = false;
     private Vector3 dashDirection;
 
-    
     private float xInput, yInput;
 
-    private bool isMoving = false;  
-    private bool isFlip = false;
+    private PlayerAnimationController animationController;
+    private PlayerSpriteController spriteController;
+
+    private void Start()
+    {
+        animationController = GetComponent<PlayerAnimationController>();
+        spriteController = GetComponent<PlayerSpriteController>();
+        movementSpeed = PlayerManager.Instance.GET_MovementSpeed();
+
+        animationController.SetAnimator(anim);
+        spriteController.SetSpriteRenderer(sr);
+    }
     private void Update()
     {
         if(!isDashing) GetMovementInput();
 
-        MoveCharacter();
-        FlipCharacter();
-        HandleCharacterAnimation();
+        animationController.HandleCharacterAnimation(xInput, yInput);
+        spriteController.FlipSprite(xInput);
+        Move(new Vector3(xInput, yInput).normalized, movementSpeed);
         HandleDash();
     }
     private void HandleDash()
@@ -67,26 +76,9 @@ public class Player : MoveableEntity
 
         dashDirection = new Vector3(xInput, yInput).normalized;
     }
-    private void HandleCharacterAnimation()
-    {
-        isMoving = xInput != 0 || yInput != 0;
-        anim.SetBool("isMoving", isMoving);
-    }
-
-    public override void FlipCharacter()
-    {
-        if(xInput < 0 && !isFlip) isFlip = true;
-        else if(xInput > 0 && isFlip) isFlip = false;
-        sr.flipX = isFlip;
-    }
     private void GetMovementInput()
     {
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
-    }
-
-    public override void MoveCharacter()
-    {
-        transform.position += new Vector3(xInput, yInput).normalized * movementSpeed * Time.deltaTime;
     }
 }
