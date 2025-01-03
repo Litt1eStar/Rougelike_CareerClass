@@ -2,45 +2,78 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MoveableEntity
 {
-    [SerializeField] private float movementSpeed = 10f;
+    [SerializeField] private float dashSpeed = 20f;
+    [SerializeField] private float dashDuration = 0.2f;
+    [SerializeField] private float dashCooldown = 1f;
 
-    Animator anim;
-    SpriteRenderer sr;
-    float xInput;
-    float yInput;
+    private float dashTimeElapsed = 0f;
+    private bool canDash = true;
+    private bool isDashing = false;
+    private Vector3 dashDirection;
 
-    bool isMoving = false;  
-    bool isFlip = false;
-    private void Start()
-    {
-        sr = GetComponentInChildren<SpriteRenderer>();
-        anim = GetComponentInChildren<Animator>();  
+    
+    private float xInput, yInput;
 
-        if(sr == null)
-        {
-            Debug.LogWarning("SpriteRenderer Component is Missing");
-        }
-
-        if (anim == null)
-        {
-            Debug.LogWarning("Animator Component is Missing");
-        }
-    }
+    private bool isMoving = false;  
+    private bool isFlip = false;
     private void Update()
     {
-        GetMovementInput();
+        if(!isDashing) GetMovementInput();
+
         MoveCharacter();
         FlipCharacter();
         HandleCharacterAnimation();
+        HandleDash();
+    }
+    private void HandleDash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            StartDash();   
+        }
+
+        if (isDashing)
+        {
+            Dash();
+            dashTimeElapsed += Time.deltaTime;
+            if(dashTimeElapsed >= dashDuration)
+            {
+                EndDash();
+            }
+        }
+    }
+
+    private void EndDash()
+    {
+        isDashing = false;
+        StartCoroutine(DashCooldown());
+    }
+    private IEnumerator DashCooldown()
+    {
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
+    private void Dash()
+    {
+        transform.position += dashDirection * dashSpeed * Time.deltaTime;
+    }
+    private void StartDash()
+    {
+        canDash = false;
+        isDashing = true;
+        dashTimeElapsed = 0f;
+
+        dashDirection = new Vector3(xInput, yInput).normalized;
     }
     private void HandleCharacterAnimation()
     {
         isMoving = xInput != 0 || yInput != 0;
         anim.SetBool("isMoving", isMoving);
     }
-    private void FlipCharacter()
+
+    public override void FlipCharacter()
     {
         if(xInput < 0 && !isFlip) isFlip = true;
         else if(xInput > 0 && isFlip) isFlip = false;
@@ -52,7 +85,7 @@ public class Player : MonoBehaviour
         yInput = Input.GetAxisRaw("Vertical");
     }
 
-    private void MoveCharacter()
+    public override void MoveCharacter()
     {
         transform.position += new Vector3(xInput, yInput).normalized * movementSpeed * Time.deltaTime;
     }
