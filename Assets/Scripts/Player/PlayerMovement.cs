@@ -80,4 +80,7 @@ public class PlayerMovement : MoveableComponent
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
     }
+
+    public float XInput() => xInput;
+    public float YInput() => yInput;
 }

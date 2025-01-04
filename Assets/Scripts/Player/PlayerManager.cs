@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerManager : BaseEntity
 {
     public static PlayerManager Instance { get; private set; }
-    private PlayerMovement movement;
+    public PlayerMovement movement;
 
     private void Awake()
     {
