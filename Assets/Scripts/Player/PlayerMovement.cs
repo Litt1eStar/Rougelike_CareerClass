@@ -22,7 +22,6 @@ public class PlayerMovement : MoveableComponent
     {
         animationController = GetComponent<PlayerAnimationController>();
         spriteController = GetComponent<PlayerSpriteController>();
-        movementSpeed = PlayerManager.Instance.GET_MovementSpeed();
 
         animationController.SetAnimator(anim);
         spriteController.SetSpriteRenderer(sr);
@@ -33,7 +32,7 @@ public class PlayerMovement : MoveableComponent
 
         animationController.HandleCharacterAnimation(xInput, yInput);
         spriteController.FlipSprite(xInput);
-        Move(new Vector3(xInput, yInput).normalized, movementSpeed);
+        Move(new Vector3(xInput, yInput).normalized, PlayerManager.Instance.GET_MovementSpeed());
         HandleDash();
     }
     private void HandleDash()
@@ -66,7 +65,7 @@ public class PlayerMovement : MoveableComponent
     }
     private void Dash()
     {
-        transform.position += dashDirection * dashSpeed * Time.deltaTime;
+        rb.AddForce(dashDirection * dashSpeed, ForceMode2D.Impulse);
     }
     private void StartDash()
     {
