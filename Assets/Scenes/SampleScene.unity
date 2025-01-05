@@ -278,6 +278,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119807154}
   m_CullTransparentMesh: 1
+--- !u!1 &239185258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 239185259}
+  m_Layer: 0
+  m_Name: Attack Checker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &239185259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239185258}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.086, y: 0.102, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1834144895}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &412333589
 GameObject:
   m_ObjectHideFlags: 0
@@ -2575,6 +2606,7 @@ GameObject:
   - component: {fileID: 1165171098}
   - component: {fileID: 1165171100}
   - component: {fileID: 1165171099}
+  - component: {fileID: 1165171101}
   m_Layer: 0
   m_Name: animator
   m_TagString: Untagged
@@ -2607,7 +2639,7 @@ Animator:
   m_GameObject: {fileID: 1165171097}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4f9c095af6fd2e44086a7d8f59fcfff4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9630597cf2194944eb1d5817296be113, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2659,7 +2691,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 821231458, guid: 67e799152543d81488457cf873891412, type: 3}
+  m_Sprite: {fileID: 841065179, guid: df8ca7bd6e5a94a4daaf83e46a8acdb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2670,6 +2702,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1165171101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165171097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f549d525feaec7a40a29ab88948d2d62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAttackComplete: 1
 --- !u!1 &1256083689
 GameObject:
   m_ObjectHideFlags: 0
@@ -9836,6 +9881,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1834144895}
   - component: {fileID: 1834144893}
+  - component: {fileID: 1834144900}
   - component: {fileID: 1834144896}
   - component: {fileID: 1834144898}
   m_Layer: 0
@@ -9857,7 +9903,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972eaaceb46357b4ab023cc807589de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackChecker: {fileID: 239185259}
+  attackRange: 2.6
   movementSpeed: 2
+  startAttack: 0
 --- !u!4 &1834144895
 Transform:
   m_ObjectHideFlags: 0
@@ -9872,6 +9921,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1165171098}
+  - {fileID: 239185259}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &1834144896
@@ -9931,6 +9981,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.068116024}
   m_Size: {x: 0.08, y: 0.14464603}
   m_Direction: 0
+--- !u!114 &1834144900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834144892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d181383e0ad5ad4ca554bab651d1f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1867683970
 GameObject:
   m_ObjectHideFlags: 0
@@ -9946,7 +10008,7 @@ GameObject:
   - component: {fileID: 1867683975}
   - component: {fileID: 1867683978}
   - component: {fileID: 1867683977}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
