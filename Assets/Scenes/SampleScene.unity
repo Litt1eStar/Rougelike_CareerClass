@@ -9904,8 +9904,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackChecker: {fileID: 239185259}
-  attackRange: 2.6
+  attackRange: 2
   movementSpeed: 2
+  cooldownAfterAttack: 1
   startAttack: 0
 --- !u!4 &1834144895
 Transform:
@@ -10010,7 +10011,7 @@ GameObject:
   - component: {fileID: 1867683977}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

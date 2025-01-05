@@ -80,13 +80,17 @@ public class Enemy : MoveableComponent
     private void CheckTarget()
     {
         float playerPosX = PlayerManager.Instance.transform.position.x;
-        Vector3 direction = playerPosX > transform.position.x ? transform.right : transform.forward;
-        float atkRange = playerPosX > transform.position.x ? attackRange : -attackRange;
-        RaycastHit2D hit = Physics2D.Raycast(attackChecker.position, direction, atkRange, LayerMask.GetMask("Player"));
+        Vector3 raycastDirection = playerPosX > transform.position.x ? transform.right : -transform.right;
+        RaycastHit2D hit = Physics2D.Raycast(attackChecker.position, raycastDirection, attackRange, LayerMask.GetMask("Player"));
+        Debug.DrawRay(attackChecker.position, raycastDirection * attackRange, Color.red);
 
-        if(hit.collider != null)
+        if(hit.collider != null && hit.collider.CompareTag("Player"))
         {
             startAttack = true;
+        }
+        else
+        {
+            startAttack = false;
         }
     }
 
