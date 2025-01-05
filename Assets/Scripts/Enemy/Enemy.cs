@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MoveableComponent
 {
+    [SerializeField] private float movementSpeed = 2f;
     private NavMeshAgent agent;
     private Vector3 destination;
 
@@ -17,6 +18,7 @@ public class Enemy : MoveableComponent
     private void Update()
     {
         destination = PlayerManager.Instance.transform.position;
+        agent.speed = movementSpeed;
         agent.SetDestination(destination);
     }
 }

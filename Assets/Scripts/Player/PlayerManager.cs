@@ -41,21 +41,23 @@ public class PlayerManager : BaseEntity
 
     public void AddExp(float val)
     {
-        float tempExp = 0f;
-        if(currentExp + val > maxExp)
-        {
-            tempExp = (currentExp + val) - maxExp;
-            currentLevel += 1;
-            currentExp += tempExp;
-        }
-        else if(currentExp + val == maxExp)
+        if(currentExp + val >= maxExp)
         {
             currentExp += val;
-            currentLevel += 1;
-            currentExp = 0;
+            LevelUp();
         }else if (currentExp + val < maxExp)
         {
             currentExp += val;
         }
+
+        UIManager.Instance.OnExpChange(currentExp);
+    }
+
+    private void LevelUp()
+    {
+        currentLevel += 1;
+        currentExp = 0;
+        maxExp *= 2;
+        UIManager.Instance.OnLevelUp(maxExp, currentLevel);
     }
 }
