@@ -2607,6 +2607,7 @@ GameObject:
   - component: {fileID: 1165171100}
   - component: {fileID: 1165171099}
   - component: {fileID: 1165171101}
+  - component: {fileID: 1165171102}
   m_Layer: 0
   m_Name: animator
   m_TagString: Untagged
@@ -2715,6 +2716,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttackComplete: 1
+--- !u!114 &1165171102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165171097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d181383e0ad5ad4ca554bab651d1f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1256083689
 GameObject:
   m_ObjectHideFlags: 0
@@ -9882,7 +9895,6 @@ GameObject:
   - component: {fileID: 1834144895}
   - component: {fileID: 1834144893}
   - component: {fileID: 1834144901}
-  - component: {fileID: 1834144900}
   - component: {fileID: 1834144896}
   - component: {fileID: 1834144898}
   m_Layer: 0
@@ -9985,18 +9997,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.068116024}
   m_Size: {x: 0.08, y: 0.14464603}
   m_Direction: 0
---- !u!114 &1834144900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1834144892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d181383e0ad5ad4ca554bab651d1f87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1834144901
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,13 +5,13 @@ using UnityEngine;
 public class EnemyAnimationController : MonoBehaviour
 {
     private Animator anim;
-    private Enemy owner;
+    private EnemyBaseClass owner;
     public bool isAttackComplete = true;
     public void OnAttackComplete()
     {
         StopAttack();
     }
-    public void SetOwner(Enemy _owner)
+    public void SetOwner(EnemyBaseClass _owner)
     {
         owner = _owner;
     }
@@ -19,23 +19,21 @@ public class EnemyAnimationController : MonoBehaviour
     {
         anim = _anim;
     }
-
-    public void PlayAnimation(string name, bool isPlay)
+    public void StartMoving()
     {
-        anim.SetBool(name, isPlay);
+        anim.SetBool(AnimationParams.IsMoving, true);
     }
-
     public void StartAttack()
     {
-        anim.SetBool("isAttacking", true);
-        anim.SetBool("isMoving", false);
+        anim.SetBool(AnimationParams.IsAttacking, true);
+        anim.SetBool(AnimationParams.IsMoving, false);
         isAttackComplete = false;
     }
 
     public void StopAttack()
     {
-        anim.SetBool("isAttacking", false);
-        anim.SetBool("isMoving", true);
+        anim.SetBool(AnimationParams.IsAttacking, false);
+        anim.SetBool(AnimationParams.IsMoving, true);
         owner.StopAttack();
         isAttackComplete = true;
     }
