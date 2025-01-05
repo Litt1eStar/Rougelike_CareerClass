@@ -9,7 +9,10 @@ public class Enemy : MoveableComponent
     [SerializeField] private float attackRange = 3f;
     [SerializeField] private float movementSpeed = 2f;
     [SerializeField] private float cooldownAfterAttack = 1f;
-    
+
+    public EnemyData enemyData;
+    public EnemyScriptableObject enemySO;
+
     private NavMeshAgent agent;
     private Vector3 destination;
     private float elapsedAttackTime = 0f;
@@ -33,6 +36,20 @@ public class Enemy : MoveableComponent
 
         spriteController = GetComponent<EnemySpriteController>();
         spriteController.SetSpriteRenderer(sr);
+
+        if(enemyData != null)
+        {
+            enemyData.SetEnemyData(
+                    enemySO.HP,
+                    enemySO.DAMAGE,
+                    enemySO.ARMOR,
+                    enemySO.MOVEMENT_SPEED,
+                    enemySO.ATTACK_SPEED,
+                    enemySO.ATTACK_RANGE
+            );
+
+            anim.runtimeAnimatorController = enemySO.animatorController as RuntimeAnimatorController;
+        }
     }
     private void Update()
     {

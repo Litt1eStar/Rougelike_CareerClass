@@ -9881,6 +9881,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1834144895}
   - component: {fileID: 1834144893}
+  - component: {fileID: 1834144901}
   - component: {fileID: 1834144900}
   - component: {fileID: 1834144896}
   - component: {fileID: 1834144898}
@@ -9907,6 +9908,8 @@ MonoBehaviour:
   attackRange: 2
   movementSpeed: 2
   cooldownAfterAttack: 1
+  enemyData: {fileID: 1834144901}
+  enemySO: {fileID: 11400000, guid: c9de57ce05baed04d9bf5501df7b83f4, type: 2}
   startAttack: 0
 --- !u!4 &1834144895
 Transform:
@@ -9994,6 +9997,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d181383e0ad5ad4ca554bab651d1f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1834144901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834144892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af3db811eb6ceca4f8e4a3a747719f7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 0
+  MP: 0
+  DAMAGE: 0
+  ARMOR: 0
+  MOVEMENT_SPEED: 0
+  ATTACK_SPEED: 0
+  ATTACK_RANGE: 0
 --- !u!1 &1867683970
 GameObject:
   m_ObjectHideFlags: 0
