@@ -37,7 +37,7 @@ public class PlayerMovement : MoveableComponent
     }
     private void HandleDash()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        if (Input.GetKeyDown(KeyCode.Space) && canDash)
         {
             StartDash();   
         }
