@@ -8,8 +8,13 @@ public class Enemy : MoveableComponent
     [SerializeField] private Transform attackChecker;
     [SerializeField] private float attackRange = 3f;
     [SerializeField] private float movementSpeed = 2f;
+    [SerializeField] private float cooldownAfterAttack = 1f;
+    
     private NavMeshAgent agent;
     private Vector3 destination;
+    private float elapsedAttackTime = 0f;
+    private bool canAttack = true;
+    private bool startCooldown = false;
 
     private EnemyAnimationController animationController;
     private EnemySpriteController spriteController;
@@ -40,7 +45,18 @@ public class Enemy : MoveableComponent
 
         CheckTarget();
 
-        if(startAttack == true && animationController.isAttackComplete == true)
+        if (startCooldown)
+        {
+            elapsedAttackTime -= Time.deltaTime;
+
+            if (elapsedAttackTime <= 0f)
+            {
+                canAttack = true;
+                startCooldown = false;
+            }
+        }
+
+        if(startAttack == true && canAttack == true && animationController.isAttackComplete == true)
         {
             StartAttack();
         }
@@ -51,18 +67,22 @@ public class Enemy : MoveableComponent
         Debug.Log("Attack");
         agent.isStopped = true;
         animationController.StartAttack();
+        canAttack = false;
     }
 
     public void StopAttack()
     {
         startAttack = false;
-        agent.isStopped = false;    
+        agent.isStopped = false;
+        startCooldown = true;
+        elapsedAttackTime = cooldownAfterAttack;
     }
     private void CheckTarget()
     {
         float playerPosX = PlayerManager.Instance.transform.position.x;
         Vector3 direction = playerPosX > transform.position.x ? transform.right : transform.forward;
-        RaycastHit2D hit = Physics2D.Raycast(attackChecker.position, direction, attackRange, LayerMask.GetMask("Player"));
+        float atkRange = playerPosX > transform.position.x ? attackRange : -attackRange;
+        RaycastHit2D hit = Physics2D.Raycast(attackChecker.position, direction, atkRange, LayerMask.GetMask("Player"));
 
         if(hit.collider != null)
         {
