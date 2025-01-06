@@ -32,7 +32,7 @@ public class PlayerMovement : MoveableComponent
 
         animationController.HandleCharacterAnimation(xInput, yInput);
         spriteController.FlipSprite(xInput);
-        Move(new Vector3(xInput, yInput).normalized, PlayerManager.Instance.GET_MovementSpeed());
+        Move(new Vector3(xInput, yInput).normalized, PlayerManager.Instance.MOVEMENT_SPEED);
         HandleDash();
     }
     private void HandleDash()
