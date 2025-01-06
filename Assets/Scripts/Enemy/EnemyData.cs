@@ -22,4 +22,23 @@ public class EnemyData : BaseEntity
         this.ATTACK_RANGE = _ATTACK_RANGE;
         this.COOLDOWN_AFTER_ATTACK = _COOLDOWN_AFTER_ATTACK;
     }
+
+    public void TakeDamage(float _DAMAGE)
+    {
+        if(this.HP - _DAMAGE > 0)
+        {
+            this.HP -= _DAMAGE;
+        }
+        else if (this.HP - _DAMAGE <= 0)
+        {
+            this.HP = 0;
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Destroy(this.gameObject);
+        //In Future; Add Die Animation / SFX
+    }
 }
