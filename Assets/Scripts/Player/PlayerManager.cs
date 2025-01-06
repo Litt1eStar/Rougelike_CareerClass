@@ -11,6 +11,8 @@ public class PlayerManager : BaseEntity
     public float currentExp = 0f;
     public float maxExp = 10f;
 
+    public float ATTACK_RANGE = 5f;
+
     private void Awake()
     {
         if(Instance != null && Instance != this)
