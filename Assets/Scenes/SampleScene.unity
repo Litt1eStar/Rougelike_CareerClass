@@ -10551,7 +10551,7 @@ MonoBehaviour:
   currentLevel: 1
   currentExp: 0
   maxExp: 10
-  ATTACK_RANGE: 5
+  ATTACK_RANGE: 15
 --- !u!114 &1867683975
 MonoBehaviour:
   m_ObjectHideFlags: 0

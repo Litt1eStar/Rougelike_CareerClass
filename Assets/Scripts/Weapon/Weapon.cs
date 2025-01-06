@@ -7,10 +7,10 @@ public class Weapon : MonoBehaviour
     public GameObject projectileGenerator;
     public GameObject bulletPrefab;
 
+    public float DAMAGE = 10f;
     public float projectileSpeed = 5f;
     public float fireRate = 1f;
     public float nextFireTime = 0f;
-    public float rotationSpeed = 180f; // Degrees per second for smooth rotation
 
     private Vector3 targetPosition;
     private bool hasTarget = false;
@@ -62,9 +62,11 @@ public class Weapon : MonoBehaviour
     {
         GameObject projectile = Instantiate(bulletPrefab, projectileGenerator.transform.position, Quaternion.identity);
         Vector2 direction = (targetPosition - projectileGenerator.transform.position).normalized;
-
-        projectile.GetComponent<Bullet>().SetRotationTo(targetPosition);
+        
         projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
+        Bullet bullet = projectile.GetComponent<Bullet>();
+        bullet.Init(DAMAGE);
+        bullet.SetRotationTo(targetPosition);
     }
 
     private void OnDrawGizmos()
