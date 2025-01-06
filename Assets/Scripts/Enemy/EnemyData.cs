@@ -31,7 +31,14 @@ public class EnemyData : BaseEntity
         }
         else if (this.HP - _DAMAGE <= 0)
         {
-            this.HP = 0;    
+            this.HP = 0;
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        Destroy(this.gameObject);
+        //In Future; Add Die Animation / SFX
     }
 }

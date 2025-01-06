@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e1e5c407129ed48a322ab959ed97fa, type: 3}
+  m_Name: WeaponSO
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 199475723, guid: 9d3cd0e7cec91974f9604c61e66b3f3b, type: 3}
+  WEAPON_BULLET: {fileID: 2990613309894984712, guid: d836b194cbc3c5e4cbcd57cb10880efd, type: 3}
+  DAMAGE: 10
+  PROJECTILE_SPEED: 15
+  FIRE_RATE: 0.5

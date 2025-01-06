@@ -4,24 +4,19 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public WeaponScriptableObject weaponSO;
     public GameObject projectileGenerator;
-    public GameObject bulletPrefab;
 
-    public float DAMAGE = 10f;
-    public float projectileSpeed = 5f;
-    public float fireRate = 1f;
-    public float nextFireTime = 0f;
-
+    private float nextFireTime = 0f;
     private Vector3 targetPosition;
-    private bool hasTarget = false;
-
+    private void Start()
+    {
+        OnEnterUsingWeapon();
+    }
     private void Update()
     {
         AimingTarget();
-        if (hasTarget)
-        {
-            SmoothLookAtTarget();
-        }
+        SmoothLookAtTarget();
     }
 
     public virtual void AimingTarget()
@@ -31,17 +26,12 @@ public class Weapon : MonoBehaviour
         if (hit != null)
         {
             targetPosition = hit.transform.position;
-            hasTarget = true;
 
             if (Time.time >= nextFireTime)
             {
                 Shoot();
-                nextFireTime = Time.time + fireRate;
+                nextFireTime = Time.time + weaponSO.FIRE_RATE;
             }
-        }
-        else
-        {
-            hasTarget = false;
         }
     }
 
@@ -57,15 +47,14 @@ public class Weapon : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, yRotation, targetAngle);
     }
 
-
     public virtual void Shoot()
     {
-        GameObject projectile = Instantiate(bulletPrefab, projectileGenerator.transform.position, Quaternion.identity);
+        GameObject projectile = Instantiate(weaponSO.WEAPON_BULLET.gameObject, projectileGenerator.transform.position, Quaternion.identity);
         Vector2 direction = (targetPosition - projectileGenerator.transform.position).normalized;
         
-        projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
+        projectile.GetComponent<Rigidbody2D>().velocity = direction * weaponSO.PROJECTILE_SPEED;
         Bullet bullet = projectile.GetComponent<Bullet>();
-        bullet.Init(DAMAGE);
+        bullet.Init(weaponSO.DAMAGE);
         bullet.SetRotationTo(targetPosition);
     }
 
@@ -75,5 +64,12 @@ public class Weapon : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(PlayerManager.Instance.transform.position, PlayerManager.Instance.ATTACK_RANGE);
+    }
+
+    public void OnEnterUsingWeapon()
+    {
+        //This method will got executed when player start using weapon
+        //Ex. Player buy new Weapon from shop and Player use this weapon in game
+        GetComponentInChildren<SpriteRenderer>().sprite = weaponSO.sprite;
     }
 }

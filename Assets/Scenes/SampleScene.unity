@@ -2993,7 +2993,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 199475723, guid: 9d3cd0e7cec91974f9604c61e66b3f3b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3001,7 +3001,7 @@ SpriteRenderer:
   m_Size: {x: 0.84375, y: 0.84375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1256083689
@@ -3282,7 +3282,7 @@ GameObject:
   - component: {fileID: 1296702244}
   - component: {fileID: 1296702245}
   m_Layer: 3
-  m_Name: Weapon_Slot01
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3317,12 +3317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6419d7cd9bc934e832299af8406de8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSO: {fileID: 11400000, guid: 001ef08338f869c4e9413f12141c0e2c, type: 2}
   projectileGenerator: {fileID: 351431213}
-  bulletPrefab: {fileID: 6321315069041610223, guid: d836b194cbc3c5e4cbcd57cb10880efd, type: 3}
-  projectileSpeed: 5
-  fireRate: 0.5
-  nextFireTime: 0
-  rotationSpeed: 1
 --- !u!1 &1372936008
 GameObject:
   m_ObjectHideFlags: 3
