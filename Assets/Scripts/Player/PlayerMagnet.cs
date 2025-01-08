@@ -24,6 +24,7 @@ public class PlayerMagnet : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(this.transform.position, magnetRange);
     }
 }
