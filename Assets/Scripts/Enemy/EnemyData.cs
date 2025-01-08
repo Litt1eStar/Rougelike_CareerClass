@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyData : BaseEntity
 {
+    public GameObject expPrefab;
+
     public float ATTACK_RANGE;
     public float COOLDOWN_AFTER_ATTACK;
     public void SetEnemyData(float _HP,
@@ -38,7 +40,12 @@ public class EnemyData : BaseEntity
 
     private void Die()
     {
+        CreateExpDrop();
         Destroy(this.gameObject);
-        //In Future; Add Die Animation / SFX
+    }
+
+    private void CreateExpDrop()
+    {
+        GameObject exp = Instantiate(expPrefab, this.transform.position, Quaternion.identity);
     }
 }
