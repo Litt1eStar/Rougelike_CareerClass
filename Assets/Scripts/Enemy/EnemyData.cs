@@ -25,27 +25,14 @@ public class EnemyData : BaseEntity
         this.COOLDOWN_AFTER_ATTACK = _COOLDOWN_AFTER_ATTACK;
     }
 
-    public void TakeDamage(float _DAMAGE)
-    {
-        if(this.HP - _DAMAGE > 0)
-        {
-            this.HP -= _DAMAGE;
-        }
-        else if (this.HP - _DAMAGE <= 0)
-        {
-            this.HP = 0;
-            Die();
-        }
-    }
-
-    private void Die()
+    public override void Die()
     {
         CreateExpDrop();
-        Destroy(this.gameObject);
+        base.Die();
     }
 
     private void CreateExpDrop()
     {
-        GameObject exp = Instantiate(expPrefab, this.transform.position, Quaternion.identity);
+        Instantiate(expPrefab, this.transform.position, Quaternion.identity);
     }
 }

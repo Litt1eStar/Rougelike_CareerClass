@@ -24,6 +24,8 @@ public class EnemyBaseClass : MoveableComponent
 
     private void Start()
     {
+        enemyData = GetComponent<EnemyData>();
+
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;

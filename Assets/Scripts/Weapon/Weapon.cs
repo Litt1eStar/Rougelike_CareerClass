@@ -21,7 +21,11 @@ public class Weapon : MonoBehaviour
 
     public virtual void AimingTarget()
     {
-        Collider2D hit = Physics2D.OverlapCircle(PlayerManager.Instance.transform.position, PlayerManager.Instance.ATTACK_RANGE, LayerMask.GetMask("Enemy"));
+        Collider2D hit = Physics2D.OverlapCircle(
+            PlayerManager.Instance.transform.position,
+            PlayerManager.Instance.currentPlayer.playerData.ATTACK_RANGE,
+            LayerMask.GetMask("Enemy")
+            );
 
         if (hit != null)
         {
@@ -63,7 +67,7 @@ public class Weapon : MonoBehaviour
         if (PlayerManager.Instance == null) return;
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(PlayerManager.Instance.transform.position, PlayerManager.Instance.ATTACK_RANGE);
+        Gizmos.DrawWireSphere(PlayerManager.Instance.transform.position, PlayerManager.Instance.currentPlayer.playerData.ATTACK_RANGE);
     }
 
     public void OnEnterUsingWeapon()
