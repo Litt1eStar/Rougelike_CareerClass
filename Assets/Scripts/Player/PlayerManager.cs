@@ -40,7 +40,20 @@ public class PlayerManager : BaseEntity
             AddExp(15);
         }
     }
-
+    public void TakeDamage(float val)
+    {
+        Debug.Log("Player got Damage");
+        if(this.HP - val <= 0)
+        {
+            //DIE
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            this.HP -= val;
+            Debug.Log(this.HP);
+        }
+    }
     public void AddExp(float val)
     {
         if(currentExp + val >= maxExp)

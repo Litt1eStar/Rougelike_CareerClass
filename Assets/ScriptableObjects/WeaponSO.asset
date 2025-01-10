@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 199475723, guid: 9d3cd0e7cec91974f9604c61e66b3f3b, type: 3}
   WEAPON_BULLET: {fileID: 2990613309894984712, guid: d836b194cbc3c5e4cbcd57cb10880efd, type: 3}
-  DAMAGE: 100
+  DAMAGE: 0
   PROJECTILE_SPEED: 15
   FIRE_RATE: 0.5
