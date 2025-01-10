@@ -20,8 +20,8 @@ public class PlayerMovement : MoveableComponent
 
     private void Start()
     {
-        animationController = GetComponent<PlayerAnimationController>();
-        spriteController = GetComponent<PlayerSpriteController>();
+        animationController = GetComponentInChildren<PlayerAnimationController>();
+        spriteController = GetComponentInChildren<PlayerSpriteController>();
 
         animationController.SetAnimator(anim);
         spriteController.SetSpriteRenderer(sr);
@@ -32,7 +32,7 @@ public class PlayerMovement : MoveableComponent
 
         animationController.HandleCharacterAnimation(xInput, yInput);
         spriteController.FlipSprite(xInput);
-        Move(new Vector3(xInput, yInput).normalized, PlayerManager.Instance.MOVEMENT_SPEED);
+        Move(new Vector3(xInput, yInput).normalized, PlayerManager.Instance.currentPlayer.playerData.MOVEMENT_SPEED);
         HandleDash();
     }
     private void HandleDash()

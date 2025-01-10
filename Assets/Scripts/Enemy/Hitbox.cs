@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeHitbox : MonoBehaviour
+public class Hitbox : MonoBehaviour
 {
     public float DAMAGE;
 
@@ -14,7 +14,7 @@ public class MeleeHitbox : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerManager>().TakeDamage(this.DAMAGE);
+            collision.GetComponent<PlayerBaseClass>().playerData.TakeDamage(this.DAMAGE);
         }
     }
 }

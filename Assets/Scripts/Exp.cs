@@ -32,7 +32,7 @@ public class Exp : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerManager>().AddExp(expValue);
+            collision.GetComponent<PlayerBaseClass>().playerData.AddExp(expValue);
             Destroy(this.gameObject);
         }
     }

@@ -11,7 +11,7 @@ public class MeleeEnemy : EnemyBaseClass
         base.AttackPattern();
 
         GameObject m_hitbox = Instantiate(attackHitbox, attackArea);
-        MeleeHitbox hitbox = m_hitbox.GetComponent<MeleeHitbox>();
+        Hitbox hitbox = m_hitbox.GetComponent<Hitbox>();
         if (hitbox != null) hitbox.Set_Damage(10);
         Destroy(m_hitbox, 0.5f);
     }

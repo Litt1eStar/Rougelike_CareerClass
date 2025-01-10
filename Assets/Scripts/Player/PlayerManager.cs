@@ -2,16 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : BaseEntity
+public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance { get; private set; }
-    public PlayerMovement movement {  get; private set; }
-
-    public int currentLevel = 1;
-    public float currentExp = 0f;
-    public float maxExp = 10f;
-
-    public float ATTACK_RANGE = 5f;
+    public PlayerMovement movement;
+    public PlayerBaseClass currentPlayer;
 
     private void Awake()
     {
@@ -23,56 +18,8 @@ public class PlayerManager : BaseEntity
         {
             Instance = this;
         }
-    }
 
-    private void Start()
-    {
+        currentPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBaseClass>();
         movement = GetComponent<PlayerMovement>();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            AddExp(5);
-        }else if (Input.GetKeyDown(KeyCode.G))
-        {
-            AddExp(15);
-        }
-    }
-    public void TakeDamage(float val)
-    {
-        Debug.Log("Player got Damage");
-        if(this.HP - val <= 0)
-        {
-            //DIE
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            this.HP -= val;
-            Debug.Log(this.HP);
-        }
-    }
-    public void AddExp(float val)
-    {
-        if(currentExp + val >= maxExp)
-        {
-            currentExp += val;
-            LevelUp();
-        }else if (currentExp + val < maxExp)
-        {
-            currentExp += val;
-        }
-
-        UIManager.Instance.OnExpChange(currentExp);
-    }
-
-    private void LevelUp()
-    {
-        currentLevel += 1;
-        currentExp = 0;
-        maxExp *= 2;
-        UIManager.Instance.OnLevelUp(maxExp, currentLevel);
     }
 }

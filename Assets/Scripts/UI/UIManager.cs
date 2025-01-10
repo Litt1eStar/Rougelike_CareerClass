@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         lvlSlider.minValue = 0f;
-        lvlSlider.maxValue = PlayerManager.Instance.maxExp;
+        lvlSlider.maxValue = PlayerManager.Instance.currentPlayer.playerData.maxExp;
     }
 
     public void OnExpChange(float currentExp)
