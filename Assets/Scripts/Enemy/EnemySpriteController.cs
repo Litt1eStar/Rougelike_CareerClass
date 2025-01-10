@@ -17,11 +17,11 @@ public class EnemySpriteController : MonoBehaviour
 
         if (playerPosX > transform.position.x)
         {
-            sr.flipX = true;
+            this.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else
         {
-            sr.flipX = false;
+            this.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 }
